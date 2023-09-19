@@ -18,11 +18,11 @@
   "preconfiguredEntries": [{
     "groupId": "5c03119e-3074-46fd-976b-c60198311f70", // Other
     "group": { "default": "Other" },
-    "title": { "default": "ModernHillbillyTabs" },
-    "description": { "default": "ModernHillbillyTabs description" },
+    "title": { "default": "WebPart Tabs" },
+    "description": { "default": "Organizes webparts in tabs." },
     "officeFabricIconFontName": "Page",
     "properties": {
-      "description": "ModernHillbillyTabs",
+      "description": "WebPart Tabs",
       "sectionClass": "CanvasSection",
       "webpartClass": "ControlZone"
     }

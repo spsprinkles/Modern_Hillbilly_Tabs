@@ -23,83 +23,77 @@ export interface IModernHillbillyTabsWebPartProps {
 export default class ModernHillbillyTabsWebPart extends BaseClientSideWebPart<IModernHillbillyTabsWebPartProps> {
 
   public render(): void {
-
     require('./AddTabs.js');
     require('./AddTabs.css');
 
-    if (this.displayMode == DisplayMode.Read)
-    {
-      var tabWebPartID = "";
-      var zoneDIV = "";
-      
-      tabWebPartID = $(this.domElement).closest("div." + this.properties.webpartClass).attr("id");       
-      zoneDIV = $(this.domElement).closest("div." + this.properties.sectionClass);
-      
+    // Default the properties
+    let webpartClass = this.properties.webpartClass || "ControlZone";
+
+    if (this.displayMode == DisplayMode.Read) {
+      var tabWebPartID = $(this.domElement).closest("div." + webpartClass).attr("id");
       var tabsDiv = tabWebPartID + "tabs";
       var contentsDiv = tabWebPartID + "Contents";
-      
-      this.domElement.innerHTML = "<div data-addui='tabs'><div role='tabs' id='"+tabsDiv+"'></div><div role='contents' id='"+contentsDiv+"'></div></div>";
+
+      this.domElement.innerHTML = "<div data-addui='tabs'><div role='tabs' id='" + tabsDiv + "'></div><div role='contents' id='" + contentsDiv + "'></div></div>";
 
       var thisTabData = this.properties.tabData;
-      for(var x in thisTabData)
-      {
-        $("#"+tabsDiv).append("<div>"+thisTabData[x].TabLabel+"</div>");
-        $("#"+contentsDiv).append($("#"+thisTabData[x].WebPartID));
+      for (var x in thisTabData) {
+        $("#" + tabsDiv).append("<div>" + thisTabData[x].TabLabel + "</div>");
+        $("#" + contentsDiv).append($("#" + thisTabData[x].WebPartID));
       }
 
       //@ts-ignore
       RenderTabs();
-      } else {
-        this.domElement.innerHTML = `
-        <div class="${ styles.modernHillbillyTabs }">
-          <div class="${ styles.container }">
-            <div class="${ styles.row }">
-              <div class="${ styles.column }">
-                <span class="${ styles.title }">Modern Hillbilly Tabs By Mark Rackley</span>
-                <p class="${ styles.subTitle }">Place Web Parts into Tabs.</p>
-                <p class="${ styles.description }">To use Modern Hillbilly Tabs: 
+    } else {
+      this.domElement.innerHTML = `
+        <div class="${styles.modernHillbillyTabs}">
+          <div class="${styles.container}">
+            <div class="${styles.row}">
+              <div class="${styles.column}">
+                <span class="${styles.title}">Modern Hillbilly Tabs By Mark Rackley</span>
+                <p class="${styles.subTitle}">Place Web Parts into Tabs.</p>
+                <p class="${styles.description}">To use Modern Hillbilly Tabs: 
                   <ul>
                     <li>Place this web part in the same section of the page as the web parts you would like to put into tabs.</li> 
                     <li>Add the web parts to the section and then edit the properties of this web part.</li>
                     <li>Click on the button to 'Manage Tab Labels' and then specify the labels for each web part using the property control.</li>
                   </ul> 
                   The other two Web Part Properties are used to identify sections/web parts on the screen. Do not change these values unless you know what you are doing.</p>
-                <a href="https://github.com/mrackley/Modern_Hillbilly_Tabs" class="${ styles.button }">
-                  <span class="${ styles.label }">View Source on GitHub</span>
+                <a href="https://github.com/mrackley/Modern_Hillbilly_Tabs" class="${styles.button}">
+                  <span class="${styles.label}">View Source on GitHub</span>
                 </a>
-                <a href="http://www.markrackley.net/2022/06/29/the-return-of-hillbilly-tabs/" class="${ styles.button }">
-                  <span class="${ styles.label }">View Blog Post</span>
+                <a href="http://www.markrackley.net/2022/06/29/the-return-of-hillbilly-tabs/" class="${styles.button}">
+                  <span class="${styles.label}">View Blog Post</span>
                 </a>
               </div>
             </div>
           </div>
         </div>`;
-      }
+    }
   }
 
   protected get dataVersion(): Version {
     return Version.parse('1.0');
   }
 
-  private getZones(): Array<[string,string]> {
-    const zones = new Array<[string,string]>();
+  private getZones(): Array<[string, string]> {
+    const zones = new Array<[string, string]>();
 
-    var tabWebPartID = $(this.domElement).closest("div." + this.properties.webpartClass).attr("id");       
+    var tabWebPartID = $(this.domElement).closest("div." + this.properties.webpartClass).attr("id");
     var zoneDIV = $(this.domElement).closest("div." + this.properties.sectionClass);
     var count = 1;
-    $(zoneDIV).find("."+this.properties.webpartClass).each(function(){
+    $(zoneDIV).find("." + this.properties.webpartClass).each(function () {
       var thisWPID = $(this).attr("id");
-      if (thisWPID != tabWebPartID)
-      {
+      if (thisWPID != tabWebPartID) {
         const zoneId = $(this).attr("id");
-        let zoneName:string = "Web Part " + count;
+        let zoneName: string = "Web Part " + count;
         count++;
         zones.push([zoneId, zoneName]);
       }
     });
 
     return zones;
-  }  
+  }
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
     return {
@@ -132,7 +126,7 @@ export default class ModernHillbillyTabsWebPart extends BaseClientSideWebPart<IM
                       title: "Web Part",
                       type: CustomCollectionFieldType.dropdown,
                       required: true,
-                      options: this.getZones().map((zone:[string,string]) => {
+                      options: this.getZones().map((zone: [string, string]) => {
                         return {
                           key: zone["0"],
                           text: zone["1"],
