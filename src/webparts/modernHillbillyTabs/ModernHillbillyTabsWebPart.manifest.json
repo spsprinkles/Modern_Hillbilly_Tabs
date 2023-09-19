@@ -20,7 +20,7 @@
     "group": { "default": "Other" },
     "title": { "default": "WebPart Tabs" },
     "description": { "default": "Organizes webparts in tabs." },
-    "officeFabricIconFontName": "Page",
+    "officeFabricIconFontName": "Tab",
     "properties": {
       "description": "WebPart Tabs",
       "sectionClass": "CanvasSection",

@@ -7,9 +7,10 @@
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
     "isDomainIsolated": false,
+    "iconPath": "",
     "developer": {
-      "name": "",
-      "websiteUrl": "",
+      "name": "Mark Rackley",
+      "websiteUrl": "https://github.com/mrackley/Modern_Hillbilly_Tabs",
       "privacyUrl": "",
       "termsOfUseUrl": "",
       "mpnId": "Undefined-1.13.1"
