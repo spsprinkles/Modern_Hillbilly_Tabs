@@ -50,9 +50,9 @@ export default class ModernHillbillyTabsWebPart extends BaseClientSideWebPart<IM
           <div class="${styles.container}">
             <div class="${styles.row}">
               <div class="${styles.column}">
-                <span class="${styles.title}">Modern Hillbilly Tabs By Mark Rackley</span>
+                <span class="${styles.title}">WebPart Tabs By Mark Rackley</span>
                 <p class="${styles.subTitle}">Place Web Parts into Tabs.</p>
-                <p class="${styles.description}">To use Modern Hillbilly Tabs: 
+                <p class="${styles.description}">To use WebPart Tabs: 
                   <ul>
                     <li>Place this web part in the same section of the page as the web parts you would like to put into tabs.</li> 
                     <li>Add the web parts to the section and then edit the properties of this web part.</li>
